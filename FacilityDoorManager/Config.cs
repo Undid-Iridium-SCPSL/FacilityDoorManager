@@ -13,15 +13,15 @@ namespace FacilityDoorManager
         public Dictionary<RoleType, HashSet<RoomType>> ScpRoomLimit { get; set; } =
             new Dictionary<RoleType, HashSet<RoomType>> {
 
-                { RoleType.Scp049, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp049, null },
                 { RoleType.Scp0492, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Scp106, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Scp079, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Scp096, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Scp173, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Tutorial, new HashSet<RoomType> { RoomType.LczAirlock } },
-                 { RoleType.Scp93953, new HashSet<RoomType> { RoomType.LczAirlock } },
-                { RoleType.Scp93989, new HashSet<RoomType> { RoomType.LczAirlock } }
+                { RoleType.Scp106,null },
+                { RoleType.Scp079,null },
+                { RoleType.Scp096,null },
+                { RoleType.Scp173, null },
+                { RoleType.Tutorial, null },
+                 { RoleType.Scp93953,null },
+                { RoleType.Scp93989, null }
             };
 
 

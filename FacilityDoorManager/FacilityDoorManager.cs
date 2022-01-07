@@ -27,7 +27,7 @@ namespace FacilityDoorManager
 
 
         private Handlers.RoundStartingBehaviors round_start_behavior;
-        private Handlers.PlayerRespawningBehaviors player_respawn_behavior;
+
         private Handlers.PlayerDoorInteraction player_door_behavior;
 
 
@@ -89,11 +89,11 @@ namespace FacilityDoorManager
             if (this.Config.behavior_rules.random_doors)
             {
                 round_start_behavior = new Handlers.RoundStartingBehaviors(this);
-                player_respawn_behavior = new Handlers.PlayerRespawningBehaviors(this);
+
 
                 early_config = Config;
                 ServerEvents.RoundStarted += round_start_behavior.OnRoundStarted;
-                PlayerEvents.Spawning += player_respawn_behavior.OnRespawning;
+
             }
 
             if (this.Config.behavior_rules.safe_facility)
@@ -113,7 +113,13 @@ namespace FacilityDoorManager
             if (this.Config.behavior_rules.random_doors)
             {
                 ServerEvents.RoundStarted -= round_start_behavior.OnRoundStarted;
-                PlayerEvents.Spawning -= player_respawn_behavior.OnRespawning;
+
+            }
+
+            if (this.Config.behavior_rules.safe_facility)
+            {
+
+                PlayerEvents.InteractingDoor -= player_door_behavior.OnDoorInteraction;
             }
 
             Log.Info("FacilityDoorManager has been unloaded");

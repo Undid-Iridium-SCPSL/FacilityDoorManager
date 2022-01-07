@@ -38,17 +38,16 @@ namespace FacilityDoorManager.Handlers
                         RoleType player_role = entity.Player.Role;
                         if (scp_lock_to_rooms.TryGetValue(player_role, out HashSet<RoomType> room_types))
                         {
-                            //LoggerTool.log_msg_static("5");
-                            //LoggerTool.log_msg_static($"I wonder what our current room is {entity.Player.CurrentRoom.Type}");
-                            //LoggerTool.log_msg_static($"I wonder what the door says {entity.Door.Type}");
-                            //LoggerTool.log_msg_static($"I wonder what the door says {string.Join(",", entity.Player.CurrentRoom.Doors)}");
-                            //LoggerTool.log_msg_static($"I wonder what the door says {entity.Player.ReferenceHub.}");
-                            if (room_types.Contains(entity.Player.CurrentRoom.Type) && entity.Player.CurrentRoom.Doors.Any(curr_room => curr_room == entity.Door))
+                            if (room_types != null)
                             {
+                                if (room_types.Contains(entity.Player.CurrentRoom.Type) && entity.Player.CurrentRoom.Doors.Any(curr_room => curr_room == entity.Door))
+                                {
 
-                                entity.IsAllowed = false;
-                                return;
+                                    entity.IsAllowed = false;
+                                    return;
+                                }
                             }
+
                         }
                     }
                 }
