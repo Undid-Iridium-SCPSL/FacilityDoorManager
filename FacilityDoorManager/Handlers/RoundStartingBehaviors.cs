@@ -14,32 +14,18 @@ namespace FacilityDoorManager.Handlers
         }
         internal void OnRoundStarted()
         {
-
-
             foreach (Door current_door in Map.Doors)
             {
-                if (this.plugin_instance.Config.DoorVariantControl.TryGetValue(current_door.Type, out bool enabled_door))
+                if (this.plugin_instance.Config.DoorVariantControl.TryGetValue(current_door.Type, out bool enabled_door) && this.next_random_value())
                 {
-
-
-                    bool output = next_random_value();
-                    if (output)
-                    {
-                        //LoggerTool.log_msg_static($"{current_door.Type} , and the hash/info {current_door.GetHashCode()} , {current_door.Base.RequiredPermissions.RequiredPermissions}");
-                        current_door.IsOpen = true;
-                    }
+                    current_door.IsOpen = true;
                 }
-
-
             }
         }
 
         public bool next_random_value()
         {
-            if (random_generator.Next(0, 2) == 0)
-                return false;
-            else
-                return true;
+            return RoundStartingBehaviors.random_generator.Next(0, 2) != 0;
         }
     }
 }

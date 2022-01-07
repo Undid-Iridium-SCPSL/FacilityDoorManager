@@ -60,15 +60,6 @@ namespace FacilityDoorManager
                 harmony.PatchAll();
                 return;
             }
-
-            //var chaos_original = typeof(ChaosInsurgencySpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
-            //var chaos_prefix = typeof(ChaosSpawnPatcher).GetMethod(nameof(ChaosSpawnPatcher.ChaosSpawnPatch));
-            //harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
-
-            //var mtf_original = typeof(NineTailedFoxSpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
-            //var mtf_prefix = typeof(MtfSpawnPatcher).GetMethod(nameof(MtfSpawnPatcher.MtfSpawnPatch));
-            //harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
-
         }
 
 
@@ -89,11 +80,8 @@ namespace FacilityDoorManager
             if (this.Config.behavior_rules.random_doors)
             {
                 round_start_behavior = new Handlers.RoundStartingBehaviors(this);
-
-
                 early_config = Config;
                 ServerEvents.RoundStarted += round_start_behavior.OnRoundStarted;
-
             }
 
             if (this.Config.behavior_rules.safe_facility)
@@ -113,12 +101,10 @@ namespace FacilityDoorManager
             if (this.Config.behavior_rules.random_doors)
             {
                 ServerEvents.RoundStarted -= round_start_behavior.OnRoundStarted;
-
             }
 
             if (this.Config.behavior_rules.safe_facility)
             {
-
                 PlayerEvents.InteractingDoor -= player_door_behavior.OnDoorInteraction;
             }
 

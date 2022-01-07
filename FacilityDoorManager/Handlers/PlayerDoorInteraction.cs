@@ -16,65 +16,35 @@ namespace FacilityDoorManager.Handlers
             this.plugin_instance = facilityDoorManager;
         }
 
-        private bool loaded_information { get; set; } = false;
-
-        private Dictionary<RoleType, HashSet<RoomType>> scp_lock_to_rooms;
         internal void OnDoorInteraction(InteractingDoorEventArgs entity)
         {
             try
             {
 
-                if (plugin_instance.Config.behavior_rules.safe_facility)
+                if (plugin_instance.Config.behavior_rules.safe_facility && entity.Player.IsScp)
                 {
-
-                    if (entity.Player.IsScp)
+                    RoleType player_role = entity.Player.Role;
+                    if (plugin_instance.Config.ScpRoomLimit.TryGetValue(player_role, out HashSet<RoomType> room_types))
                     {
-
-                        if (scp_lock_to_rooms == null)
+                        if (room_types != null)
                         {
-                            scp_lock_to_rooms = plugin_instance.Config.ScpRoomLimit;
-                        }
-
-                        RoleType player_role = entity.Player.Role;
-                        if (scp_lock_to_rooms.TryGetValue(player_role, out HashSet<RoomType> room_types))
-                        {
-                            if (room_types != null)
+                            if (room_types.Contains(entity.Player.CurrentRoom.Type) && entity.Player.CurrentRoom.Doors.Any(curr_room => curr_room == entity.Door))
                             {
-                                if (room_types.Contains(entity.Player.CurrentRoom.Type) && entity.Player.CurrentRoom.Doors.Any(curr_room => curr_room == entity.Door))
-                                {
-
-                                    entity.IsAllowed = false;
-                                    return;
-                                }
+                                entity.IsAllowed = false;
+                                return;
                             }
-
                         }
+
                     }
                 }
+
             }
             catch (Exception harmony_error)
             {
-                Log.Error($"OverloadForceReloadPost.OverloadForceReloadPost: {harmony_error}\n{harmony_error.StackTrace}\n{Environment.StackTrace}");
+                Log.Error($"PlayerDoorInteraction.OnDoorInteraction: {harmony_error}\n{harmony_error.StackTrace}\n{Environment.StackTrace}");
             }
             entity.IsAllowed = true;
         }
 
-        private void add_room_to_scp(RoleType player_role, RoomType current_room)
-        {
-            if (plugin_instance.Config.ScpRoomLimit.TryGetValue(player_role, out HashSet<RoomType> allocated_rooms))
-            {
-                if (allocated_rooms.Contains(current_room))
-                {
-                    if (!scp_lock_to_rooms.ContainsKey(player_role))
-                    {
-                        scp_lock_to_rooms[player_role] = new HashSet<RoomType> { current_room };
-                    }
-                    else
-                    {
-                        scp_lock_to_rooms[player_role].Add(current_room);
-                    }
-                }
-            }
-        }
     }
 }
