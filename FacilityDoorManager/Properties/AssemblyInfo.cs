@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("FacilityDoorManager")]
-[assembly: AssemblyDescription("Ability to control doors in the facility.")]
+[assembly: AssemblyDescription("Ability to control doors in the facility, and for scps as well.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FacilityDoorManager")]
