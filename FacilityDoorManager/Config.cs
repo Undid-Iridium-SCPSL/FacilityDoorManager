@@ -9,9 +9,20 @@ namespace FacilityDoorManager
     {
 
 
-        [Description("Control over what doors will be black listed from opening on round start.")]
+        [Description("Control over what rooms scp's are locked from per SCP.")]
         public Dictionary<RoleType, HashSet<RoomType>> ScpRoomLimit { get; set; } =
-            new Dictionary<RoleType, HashSet<RoomType>> { { RoleType.Scp049, new HashSet<RoomType> { RoomType.LczAirlock } } };
+            new Dictionary<RoleType, HashSet<RoomType>> {
+
+                { RoleType.Scp049, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp0492, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp106, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp079, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp096, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp173, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Tutorial, new HashSet<RoomType> { RoomType.LczAirlock } },
+                 { RoleType.Scp93953, new HashSet<RoomType> { RoomType.LczAirlock } },
+                { RoleType.Scp93989, new HashSet<RoomType> { RoomType.LczAirlock } }
+            };
 
 
         [Description("Control over what doors will be black listed from opening on round start.")]
