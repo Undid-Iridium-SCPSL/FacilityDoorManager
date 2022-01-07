@@ -84,3 +84,5 @@ facility_door_manager:
   is_enabled: true
 ```
 
+![SCPSL_RR59r9VFqz](https://user-images.githubusercontent.com/24619207/148615127-98bfcd42-e962-43c1-95ae-7007afa8bd10.png)
+![SCPSL_4fTAq2b7Qr](https://user-images.githubusercontent.com/24619207/148615132-dd08fd0c-0849-4aa5-b086-df8884d24870.png)
