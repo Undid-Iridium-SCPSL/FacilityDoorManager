@@ -53,20 +53,13 @@ namespace FacilityDoorManager
 
         private void RegisterHarmony()
         {
-            harmony = new Harmony(harmony_id);
-            //https://harmony.pardeike.net/articles/basics.html cute patching method
-            if (Config.behavior_rules.patch_all)
-            {
-                harmony.PatchAll();
-                return;
-            }
+
         }
 
 
         private void UnRegisterHarmony()
         {
-            harmony.UnpatchAll(harmony.Id);
-            harmony = null;
+
         }
 
 

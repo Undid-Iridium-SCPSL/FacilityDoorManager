@@ -23,8 +23,7 @@ namespace FacilityDoorManager.Handlers
 
                 if (plugin_instance.Config.behavior_rules.safe_facility && entity.Player.IsScp)
                 {
-                    RoleType player_role = entity.Player.Role;
-                    if (plugin_instance.Config.ScpRoomLimit.TryGetValue(player_role, out HashSet<RoomType> room_types))
+                    if (plugin_instance.Config.ScpRoomLimit.TryGetValue(entity.Player.Role, out HashSet<RoomType> room_types))
                     {
                         if (room_types != null)
                         {
