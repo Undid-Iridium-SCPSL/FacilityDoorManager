@@ -1,5 +1,23 @@
 # FacilityDoorManager
 
+
+![FacilityDoorManager LATEST](https://img.shields.io/github/v/release/Undid-Iridium/FacilityDoorManager?include_prereleases&style=flat-square)
+![FacilityDoorManager LINES](https://img.shields.io/tokei/lines/github/Undid-Iridium/FacilityDoorManager)
+![FacilityDoorManager DOWNLOADS](https://img.shields.io/github/downloads/Undid-Iridium/FacilityDoorManager/total?style=flat-square)
+
+
+# Installation
+
+**[EXILED](https://github.com/galaxy119/EXILED) must be installed for this to work.**
+
+Place the "FacilityDoorManager.dll" file in your Plugins folder.
+
+
+## REQUIREMENTS
+* Exiled: V4.2.0
+* SCP:SL Server: V11.1.0
+
+
 Allows users to have doors randomly open at start of round, and can blacklist which does should not be attempted to be open.
 Allows users to lock specific SCP's from specific doors in specific rooms. This means that if they attempt to open the door it will fail. SCP106 can still walk through them but cannot close/open if you set it based on room.
 
