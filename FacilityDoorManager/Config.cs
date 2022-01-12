@@ -7,7 +7,7 @@ namespace FacilityDoorManager
 {
     public sealed class Config : IConfig
     {
-        3
+
 
         [Description("Control over what rooms scp's are locked from per SCP.")]
         public Dictionary<RoleType, HashSet<RoomType>> ScpRoomLimit { get; set; } =
