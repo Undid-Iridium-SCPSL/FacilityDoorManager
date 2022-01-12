@@ -42,7 +42,7 @@ namespace FacilityDoorManager.Handlers
             {
                 Log.Error($"PlayerDoorInteraction.OnDoorInteraction: {harmony_error}\n{harmony_error.StackTrace}\n{Environment.StackTrace}");
             }
-            entity.IsAllowed = true;
+
         }
 
     }
