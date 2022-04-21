@@ -36,7 +36,7 @@ namespace FacilityDoorManager.Utilities
             if (config == null)
             {
                 config = FacilityDoorManager.early_config;
-                if (config.behavior_rules.debug_enabled)
+                if (config.Behavior_rules.Debug_enabled)
                 {
                     using (StreamWriter file_stream_ref = File.CreateText(static_default_path))
                     {
@@ -53,7 +53,7 @@ namespace FacilityDoorManager.Utilities
                 return;
             }
 
-            if (config.behavior_rules.debug_enabled)
+            if (config.Behavior_rules.Debug_enabled)
             {
                 StaticAddText(msg);
             }

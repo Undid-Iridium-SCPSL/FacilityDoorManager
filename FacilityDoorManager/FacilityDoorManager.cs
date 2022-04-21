@@ -70,14 +70,14 @@ namespace FacilityDoorManager
         {
             // Register the event handler class. And add the event,
             // to the EXILED_Events event listener so we get the event.
-            if (this.Config.behavior_rules.random_doors)
+            if (this.Config.Behavior_rules.Random_doors)
             {
                 round_start_behavior = new Handlers.RoundStartingBehaviors(this);
                 early_config = Config;
                 ServerEvents.RoundStarted += round_start_behavior.OnRoundStarted;
             }
 
-            if (this.Config.behavior_rules.safe_facility)
+            if (this.Config.Behavior_rules.Safe_facility)
             {
                 player_door_behavior = new Handlers.PlayerDoorInteraction(this);
                 PlayerEvents.InteractingDoor += player_door_behavior.OnDoorInteraction;
@@ -91,12 +91,12 @@ namespace FacilityDoorManager
         /// </summary>
         public void UnRegisterEvents()
         {
-            if (this.Config.behavior_rules.random_doors)
+            if (this.Config.Behavior_rules.Random_doors)
             {
                 ServerEvents.RoundStarted -= round_start_behavior.OnRoundStarted;
             }
 
-            if (this.Config.behavior_rules.safe_facility)
+            if (this.Config.Behavior_rules.Safe_facility)
             {
                 PlayerEvents.InteractingDoor -= player_door_behavior.OnDoorInteraction;
             }
