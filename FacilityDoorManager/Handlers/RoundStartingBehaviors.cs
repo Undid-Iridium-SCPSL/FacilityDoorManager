@@ -1,11 +1,11 @@
 ﻿using Exiled.API.Features;
 using System;
-
+using UnityEngine;
 namespace FacilityDoorManager.Handlers
 {
     internal class RoundStartingBehaviors
     {
-        public static Random random_generator = new Random();
+
         private FacilityDoorManager plugin_instance;
 
         public RoundStartingBehaviors(FacilityDoorManager plugin_instance)
@@ -14,9 +14,9 @@ namespace FacilityDoorManager.Handlers
         }
         internal void OnRoundStarted()
         {
-            foreach (Door current_door in Map.Doors)
+            foreach (Door current_door in Door.List)
             {
-                if (this.plugin_instance.Config.DoorVariantControl.TryGetValue(current_door.Type, out bool enabled_door) && this.next_random_value())
+                if (plugin_instance.Config.DoorVariantControl.TryGetValue(current_door.Type, out bool enabled_door) && next_random_value())
                 {
                     current_door.IsOpen = true;
                 }
@@ -25,7 +25,7 @@ namespace FacilityDoorManager.Handlers
 
         public bool next_random_value()
         {
-            return RoundStartingBehaviors.random_generator.Next(0, 2) != 0;
+            return UnityEngine.Random.Range(0, 2) != 0;
         }
     }
 }
