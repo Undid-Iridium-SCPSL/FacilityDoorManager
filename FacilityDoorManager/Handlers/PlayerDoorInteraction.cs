@@ -21,7 +21,7 @@ namespace FacilityDoorManager.Handlers
             try
             {
 
-                if (plugin_instance.Config.behavior_rules.safe_facility && entity.Player.IsScp)
+                if (plugin_instance.Config.Behavior_rules.Safe_facility && entity.Player.IsScp)
                 {
                     if (plugin_instance.Config.ScpRoomLimit.TryGetValue(entity.Player.Role, out HashSet<RoomType> room_types))
                     {

@@ -14,21 +14,25 @@ namespace FacilityDoorManager
 
         public static Config early_config;
 
-        /// <summary>
-        /// Medium priority, lower prioritys mean faster loadin
-        /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Higher;
-
-        private Harmony harmony;
-        private string harmony_id = "com.Undid-Iridium.FacilityDoorManager";
-
-        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
 
 
+        /// <inheritdoc />
+        public override string Author => "Undid-Iridium";
 
-        private Handlers.RoundStartingBehaviors round_start_behavior;
+        /// <inheritdoc />
+        public override string Name => "FacilityDoorManager";
 
-        private Handlers.PlayerDoorInteraction player_door_behavior;
+        /// <inheritdoc />
+        public override Version RequiredExiledVersion { get; } = new Version(5, 1, 3);
+
+        /// <inheritdoc />
+        public override Version Version { get; } = new Version(1, 1, 4);
+
+
+
+        private Handlers.RoundStartingBehaviors roundStartBehavior;
+
+        private Handlers.PlayerDoorInteraction playerDoorBehavior;
 
 
         /// <summary>
@@ -37,7 +41,6 @@ namespace FacilityDoorManager
         public override void OnEnabled()
         {
             RegisterEvents();
-            RegisterHarmony();
             base.OnEnabled();
         }
 
@@ -47,19 +50,7 @@ namespace FacilityDoorManager
         public override void OnDisabled()
         {
             UnRegisterEvents();
-            UnRegisterHarmony();
             base.OnDisabled();
-        }
-
-        private void RegisterHarmony()
-        {
-
-        }
-
-
-        private void UnRegisterHarmony()
-        {
-
         }
 
 
@@ -70,35 +61,36 @@ namespace FacilityDoorManager
         {
             // Register the event handler class. And add the event,
             // to the EXILED_Events event listener so we get the event.
-            if (this.Config.behavior_rules.random_doors)
+            if (Config.Behavior_rules.Random_doors)
             {
-                round_start_behavior = new Handlers.RoundStartingBehaviors(this);
+                roundStartBehavior = new Handlers.RoundStartingBehaviors(this);
                 early_config = Config;
-                ServerEvents.RoundStarted += round_start_behavior.OnRoundStarted;
+                ServerEvents.RoundStarted += roundStartBehavior.OnRoundStarted;
             }
 
-            if (this.Config.behavior_rules.safe_facility)
+            if (Config.Behavior_rules.Safe_facility)
             {
-                player_door_behavior = new Handlers.PlayerDoorInteraction(this);
-                PlayerEvents.InteractingDoor += player_door_behavior.OnDoorInteraction;
+                playerDoorBehavior = new Handlers.PlayerDoorInteraction(this);
+                PlayerEvents.InteractingDoor += playerDoorBehavior.OnDoorInteraction;
             }
 
             Log.Info("FacilityDoorManager has been loaded");
 
         }
+
         /// <summary>
         /// Unregisters the events defined in RegisterEvents, recommended that everything created be destroyed if not reused in some way.
         /// </summary>
         public void UnRegisterEvents()
         {
-            if (this.Config.behavior_rules.random_doors)
+            if (Config.Behavior_rules.Random_doors)
             {
-                ServerEvents.RoundStarted -= round_start_behavior.OnRoundStarted;
+                ServerEvents.RoundStarted -= roundStartBehavior.OnRoundStarted;
             }
 
-            if (this.Config.behavior_rules.safe_facility)
+            if (Config.Behavior_rules.Safe_facility)
             {
-                PlayerEvents.InteractingDoor -= player_door_behavior.OnDoorInteraction;
+                PlayerEvents.InteractingDoor -= playerDoorBehavior.OnDoorInteraction;
             }
 
             Log.Info("FacilityDoorManager has been unloaded");

@@ -99,7 +99,7 @@ namespace FacilityDoorManager.Utilities
             }
         }
 
-        public static void log_object(Object item, String obj_name = "")
+        public static void log_object(object item, string obj_name = "")
         {
             LoggerTool.log_msg_static("Logging new Object:" + obj_name);
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(item))

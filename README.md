@@ -14,8 +14,8 @@ Place the "FacilityDoorManager.dll" file in your Plugins folder.
 
 
 ## REQUIREMENTS
-* Exiled: V4.2.0
-* SCP:SL Server: V11.1.0
+* Exiled: V5.1.3
+* SCP:SL Server: V12.0.0
 
 
 Allows users to have doors randomly open at start of round, and can blacklist which does should not be attempted to be open.
