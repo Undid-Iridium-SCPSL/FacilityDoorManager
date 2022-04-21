@@ -1,10 +1,10 @@
-﻿using Exiled.API.Enums;
-using Exiled.API.Interfaces;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace FacilityDoorManager
+﻿namespace FacilityDoorManager
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using Exiled.API.Enums;
+    using Exiled.API.Interfaces;
+
     public sealed class Config : IConfig
     {
 
@@ -20,10 +20,9 @@ namespace FacilityDoorManager
                 { RoleType.Scp096,null },
                 { RoleType.Scp173, null },
                 { RoleType.Tutorial, null },
-                 { RoleType.Scp93953,null },
-                { RoleType.Scp93989, null }
+                { RoleType.Scp93953,null },
+                { RoleType.Scp93989, null },
             };
-
 
         [Description("Control over what doors will be black listed from opening on round start.")]
         public Dictionary<DoorType, bool> DoorVariantControl { get; set; } =
