@@ -30,9 +30,9 @@ namespace FacilityDoorManager
 
 
 
-        private Handlers.RoundStartingBehaviors round_start_behavior;
+        private Handlers.RoundStartingBehaviors roundStartBehavior;
 
-        private Handlers.PlayerDoorInteraction player_door_behavior;
+        private Handlers.PlayerDoorInteraction playerDoorBehavior;
 
 
         /// <summary>
@@ -63,15 +63,15 @@ namespace FacilityDoorManager
             // to the EXILED_Events event listener so we get the event.
             if (Config.Behavior_rules.Random_doors)
             {
-                round_start_behavior = new Handlers.RoundStartingBehaviors(this);
+                roundStartBehavior = new Handlers.RoundStartingBehaviors(this);
                 early_config = Config;
-                ServerEvents.RoundStarted += round_start_behavior.OnRoundStarted;
+                ServerEvents.RoundStarted += roundStartBehavior.OnRoundStarted;
             }
 
             if (Config.Behavior_rules.Safe_facility)
             {
-                player_door_behavior = new Handlers.PlayerDoorInteraction(this);
-                PlayerEvents.InteractingDoor += player_door_behavior.OnDoorInteraction;
+                playerDoorBehavior = new Handlers.PlayerDoorInteraction(this);
+                PlayerEvents.InteractingDoor += playerDoorBehavior.OnDoorInteraction;
             }
 
             Log.Info("FacilityDoorManager has been loaded");
@@ -85,12 +85,12 @@ namespace FacilityDoorManager
         {
             if (Config.Behavior_rules.Random_doors)
             {
-                ServerEvents.RoundStarted -= round_start_behavior.OnRoundStarted;
+                ServerEvents.RoundStarted -= roundStartBehavior.OnRoundStarted;
             }
 
             if (Config.Behavior_rules.Safe_facility)
             {
-                PlayerEvents.InteractingDoor -= player_door_behavior.OnDoorInteraction;
+                PlayerEvents.InteractingDoor -= playerDoorBehavior.OnDoorInteraction;
             }
 
             Log.Info("FacilityDoorManager has been unloaded");
